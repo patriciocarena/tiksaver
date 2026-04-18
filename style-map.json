@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": 1776496156074,
+  "generatedAt": 1776496451982,
   "entries": {
     "Index@app/index.tsx:5": {
       "element": {
@@ -2072,10 +2072,10 @@
         }
       ]
     },
-    "HistoryItem@components/history-item.tsx:38": {
+    "HistoryItem@components/history-item.tsx:49": {
       "element": {
         "file": "components/history-item.tsx",
-        "line": 38
+        "line": 49
       },
       "styles": [
         {
@@ -2083,90 +2083,46 @@
           "file": "components/history-item.tsx",
           "properties": {
             "flexDirection": {
-              "line": 40,
+              "line": 51,
               "col": 25,
               "endCol": 30,
               "raw": "\"row\""
             },
             "alignItems": {
-              "line": 41,
+              "line": 52,
               "col": 22,
               "endCol": 30,
               "raw": "\"center\""
             },
             "gap": {
-              "line": 42,
+              "line": 53,
               "col": 15,
               "endCol": 17,
               "raw": "12"
             },
             "borderRadius": {
-              "line": 44,
+              "line": 55,
               "col": 24,
               "endCol": 26,
               "raw": "16"
             },
             "borderCurve": {
-              "line": 45,
+              "line": 56,
               "col": 23,
               "endCol": 35,
               "raw": "\"continuous\""
             },
             "padding": {
-              "line": 46,
+              "line": 57,
               "col": 19,
               "endCol": 21,
               "raw": "12"
             },
             "borderWidth": {
-              "line": 47,
+              "line": 58,
               "col": 23,
               "endCol": 24,
               "raw": "1"
-            }
-          }
-        }
-      ]
-    },
-    "HistoryItem@components/history-item.tsx:52": {
-      "element": {
-        "file": "components/history-item.tsx",
-        "line": 52
-      },
-      "styles": [
-        {
-          "origin": "inline",
-          "file": "components/history-item.tsx",
-          "properties": {
-            "width": {
-              "line": 54,
-              "col": 19,
-              "endCol": 21,
-              "raw": "72"
-            },
-            "height": {
-              "line": 55,
-              "col": 20,
-              "endCol": 22,
-              "raw": "72"
-            },
-            "borderRadius": {
-              "line": 56,
-              "col": 26,
-              "endCol": 28,
-              "raw": "12"
-            },
-            "borderCurve": {
-              "line": 57,
-              "col": 25,
-              "endCol": 37,
-              "raw": "\"continuous\""
-            },
-            "overflow": {
-              "line": 58,
-              "col": 22,
-              "endCol": 30,
-              "raw": "\"hidden\""
             }
           }
         }
@@ -2184,12 +2140,56 @@
           "properties": {
             "width": {
               "line": 65,
+              "col": 19,
+              "endCol": 21,
+              "raw": "72"
+            },
+            "height": {
+              "line": 66,
+              "col": 20,
+              "endCol": 22,
+              "raw": "72"
+            },
+            "borderRadius": {
+              "line": 67,
+              "col": 26,
+              "endCol": 28,
+              "raw": "12"
+            },
+            "borderCurve": {
+              "line": 68,
+              "col": 25,
+              "endCol": 37,
+              "raw": "\"continuous\""
+            },
+            "overflow": {
+              "line": 69,
+              "col": 22,
+              "endCol": 30,
+              "raw": "\"hidden\""
+            }
+          }
+        }
+      ]
+    },
+    "HistoryItem@components/history-item.tsx:74": {
+      "element": {
+        "file": "components/history-item.tsx",
+        "line": 74
+      },
+      "styles": [
+        {
+          "origin": "inline",
+          "file": "components/history-item.tsx",
+          "properties": {
+            "width": {
+              "line": 76,
               "col": 30,
               "endCol": 32,
               "raw": "72"
             },
             "height": {
-              "line": 65,
+              "line": 76,
               "col": 42,
               "endCol": 44,
               "raw": "72"
@@ -2198,10 +2198,10 @@
         }
       ]
     },
-    "HistoryItem@components/history-item.tsx:70": {
+    "HistoryItem@components/history-item.tsx:81": {
       "element": {
         "file": "components/history-item.tsx",
-        "line": 70
+        "line": 81
       },
       "styles": [
         {
@@ -2209,19 +2209,19 @@
           "file": "components/history-item.tsx",
           "properties": {
             "flex": {
-              "line": 72,
+              "line": 83,
               "col": 22,
               "endCol": 23,
               "raw": "1"
             },
             "justifyContent": {
-              "line": 73,
+              "line": 84,
               "col": 32,
               "endCol": 40,
               "raw": "\"center\""
             },
             "alignItems": {
-              "line": 74,
+              "line": 85,
               "col": 28,
               "endCol": 36,
               "raw": "\"center\""
@@ -2230,10 +2230,10 @@
         }
       ]
     },
-    "HistoryItem@components/history-item.tsx:87": {
+    "HistoryItem@components/history-item.tsx:98": {
       "element": {
         "file": "components/history-item.tsx",
-        "line": 87
+        "line": 98
       },
       "styles": [
         {
@@ -2241,42 +2241,16 @@
           "file": "components/history-item.tsx",
           "properties": {
             "flex": {
-              "line": 87,
+              "line": 98,
               "col": 29,
               "endCol": 30,
               "raw": "1"
             },
             "gap": {
-              "line": 87,
+              "line": 98,
               "col": 37,
               "endCol": 38,
               "raw": "4"
-            }
-          }
-        }
-      ]
-    },
-    "HistoryItem@components/history-item.tsx:88": {
-      "element": {
-        "file": "components/history-item.tsx",
-        "line": 88
-      },
-      "styles": [
-        {
-          "origin": "inline",
-          "file": "components/history-item.tsx",
-          "properties": {
-            "fontSize": {
-              "line": 92,
-              "col": 24,
-              "endCol": 26,
-              "raw": "14"
-            },
-            "lineHeight": {
-              "line": 93,
-              "col": 26,
-              "endCol": 28,
-              "raw": "18"
             }
           }
         }
@@ -2292,20 +2266,46 @@
           "origin": "inline",
           "file": "components/history-item.tsx",
           "properties": {
+            "fontSize": {
+              "line": 103,
+              "col": 24,
+              "endCol": 26,
+              "raw": "14"
+            },
+            "lineHeight": {
+              "line": 104,
+              "col": 26,
+              "endCol": 28,
+              "raw": "18"
+            }
+          }
+        }
+      ]
+    },
+    "HistoryItem@components/history-item.tsx:110": {
+      "element": {
+        "file": "components/history-item.tsx",
+        "line": 110
+      },
+      "styles": [
+        {
+          "origin": "inline",
+          "file": "components/history-item.tsx",
+          "properties": {
             "flexDirection": {
-              "line": 99,
+              "line": 110,
               "col": 40,
               "endCol": 45,
               "raw": "\"row\""
             },
             "alignItems": {
-              "line": 99,
+              "line": 110,
               "col": 59,
               "endCol": 67,
               "raw": "\"center\""
             },
             "gap": {
-              "line": 99,
+              "line": 110,
               "col": 74,
               "endCol": 75,
               "raw": "6"
@@ -2314,10 +2314,10 @@
         }
       ]
     },
-    "HistoryItem@components/history-item.tsx:101": {
+    "HistoryItem@components/history-item.tsx:112": {
       "element": {
         "file": "components/history-item.tsx",
-        "line": 101
+        "line": 112
       },
       "styles": [
         {
@@ -2325,7 +2325,7 @@
           "file": "components/history-item.tsx",
           "properties": {
             "fontSize": {
-              "line": 104,
+              "line": 115,
               "col": 26,
               "endCol": 28,
               "raw": "12"
@@ -2334,10 +2334,54 @@
         }
       ]
     },
-    "HistoryItem@components/history-item.tsx:114": {
+    "HistoryItem@components/history-item.tsx:125": {
       "element": {
         "file": "components/history-item.tsx",
-        "line": 114
+        "line": 125
+      },
+      "styles": [
+        {
+          "origin": "inline",
+          "file": "components/history-item.tsx",
+          "properties": {
+            "flexDirection": {
+              "line": 125,
+              "col": 38,
+              "endCol": 43,
+              "raw": "\"row\""
+            },
+            "alignItems": {
+              "line": 125,
+              "col": 57,
+              "endCol": 65,
+              "raw": "\"center\""
+            },
+            "gap": {
+              "line": 125,
+              "col": 72,
+              "endCol": 73,
+              "raw": "6"
+            }
+          }
+        }
+      ]
+    },
+    "HistoryItem@components/history-item.tsx:128": {
+      "element": {
+        "file": "components/history-item.tsx",
+        "line": 128
+      },
+      "styles": [
+        {
+          "origin": "dynamic",
+          "resolvable": false
+        }
+      ]
+    },
+    "HistoryItem@components/history-item.tsx:149": {
+      "element": {
+        "file": "components/history-item.tsx",
+        "line": 149
       },
       "styles": [
         {

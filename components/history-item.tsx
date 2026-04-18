@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, Linking } from "react-native";
 import { Image } from "expo-image";
 import Animated, { FadeInRight, FadeOutLeft } from "react-native-reanimated";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -9,6 +9,7 @@ import type { DownloadHistoryItem } from "@/store/types";
 interface HistoryItemProps {
   item: DownloadHistoryItem;
   onDelete: (id: string) => void;
+  onOpenUrl?: (url: string) => void;
   index: number;
 }
 
@@ -27,8 +28,18 @@ function formatRelativeDate(isoDate: string): string {
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
-export function HistoryItem({ item, onDelete, index }: HistoryItemProps) {
+export function HistoryItem({ item, onDelete, onOpenUrl, index }: HistoryItemProps) {
   const { colors } = useTheme();
+
+  const handleOpenInBrowser = () => {
+    if (item.url) {
+      if (onOpenUrl) {
+        onOpenUrl(item.url);
+      } else {
+        Linking.openURL(item.url);
+      }
+    }
+  };
 
   return (
     <Animated.View
@@ -110,23 +121,50 @@ export function HistoryItem({ item, onDelete, index }: HistoryItemProps) {
           </View>
         </View>
 
-        {/* Delete button */}
-        <Pressable
-          onPress={() => onDelete(item.id)}
-          hitSlop={12}
-          style={({ pressed }) => ({
-            width: 36,
-            height: 36,
-            borderRadius: 18,
-            backgroundColor: pressed
-              ? colors.errorMuted
-              : colors.surfacePressed,
-            justifyContent: "center",
-            alignItems: "center",
-          })}
-        >
-          <Ionicons name="trash-outline" size={16} color={colors.error} />
-        </Pressable>
+        {/* Action buttons */}
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+          {/* Open in browser button */}
+          {item.url ? (
+            <Pressable
+              onPress={handleOpenInBrowser}
+              hitSlop={8}
+              accessibilityLabel="Open original TikTok video in browser"
+              accessibilityRole="link"
+              style={({ pressed }) => ({
+                width: 36,
+                height: 36,
+                borderRadius: 18,
+                backgroundColor: pressed
+                  ? colors.secondaryMuted
+                  : colors.surfacePressed,
+                justifyContent: "center",
+                alignItems: "center",
+              })}
+            >
+              <Ionicons name="open-outline" size={16} color={colors.secondary} />
+            </Pressable>
+          ) : null}
+
+          {/* Delete button */}
+          <Pressable
+            onPress={() => onDelete(item.id)}
+            hitSlop={8}
+            accessibilityLabel="Delete from history"
+            accessibilityRole="button"
+            style={({ pressed }) => ({
+              width: 36,
+              height: 36,
+              borderRadius: 18,
+              backgroundColor: pressed
+                ? colors.errorMuted
+                : colors.surfacePressed,
+              justifyContent: "center",
+              alignItems: "center",
+            })}
+          >
+            <Ionicons name="trash-outline" size={16} color={colors.error} />
+          </Pressable>
+        </View>
       </View>
     </Animated.View>
   );
