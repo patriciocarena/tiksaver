@@ -21,11 +21,16 @@ import { useTheme } from "@/hooks/use-theme";
 import { useToast } from "@/hooks/use-toast";
 import { Fonts } from "@/constants/Typography";
 import { VideoPreviewCard } from "@/components/video-preview-card";
+import { FilenameModal } from "@/components/filename-modal";
 import {
   isValidTikTokUrl,
   fetchVideoInfo,
   type TikTokVideoInfo,
 } from "@/services/tiktok-api";
+import {
+  downloadAndSaveVideo,
+  generateDefaultFilename,
+} from "@/services/download-service";
 import { useAppStore } from "@/store/useAppStore";
 
 type ScreenState =
@@ -47,6 +52,7 @@ export default function DownloadScreen() {
   const [state, setState] = useState<ScreenState>("idle");
   const [videoInfo, setVideoInfo] = useState<TikTokVideoInfo | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const [showFilenameModal, setShowFilenameModal] = useState(false);
   const inputRef = useRef<TextInput>(null);
 
   const isCompact = width < 500;
@@ -99,46 +105,54 @@ export default function DownloadScreen() {
     }
   }, [url, showToast]);
 
-  const handleDownload = useCallback(async () => {
+  const handleDownload = useCallback(() => {
     if (!videoInfo) return;
+    // Show the filename modal before downloading
+    setShowFilenameModal(true);
+  }, [videoInfo]);
 
-    setState("downloading");
+  const handleConfirmDownload = useCallback(
+    async (filename: string) => {
+      if (!videoInfo) return;
 
-    try {
-      // Brief delay for UX
-      await new Promise((r) => setTimeout(r, 1200));
+      setShowFilenameModal(false);
+      setState("downloading");
 
-      if (videoInfo.downloadUrl) {
-        // On web, trigger download via anchor
-        if (Platform.OS === "web") {
-          const link = document.createElement("a");
-          link.href = videoInfo.downloadUrl;
-          link.target = "_blank";
-          link.rel = "noopener noreferrer";
-          link.download = `tiksave-${videoInfo.id}.mp4`;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
+      try {
+        if (!videoInfo.downloadUrl) {
+          throw new Error("No download URL available");
         }
+
+        const result = await downloadAndSaveVideo({
+          url: videoInfo.downloadUrl,
+          filename,
+        });
+
+        if (!result.success) {
+          throw new Error(result.error || "Download failed");
+        }
+
+        // Add to history
+        addToHistory({
+          id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+          url: url.trim(),
+          videoTitle: videoInfo.title,
+          thumbnail: videoInfo.thumbnail,
+          downloadDate: new Date().toISOString(),
+          localPath: result.localUri || videoInfo.downloadUrl,
+        });
+
+        setState("downloaded");
+        showToast("Video saved to your device!", "success");
+      } catch (err) {
+        setState("preview");
+        const message =
+          err instanceof Error ? err.message : "Download failed";
+        showToast(message, "error");
       }
-
-      // Add to history
-      addToHistory({
-        id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-        url: url.trim(),
-        videoTitle: videoInfo.title,
-        thumbnail: videoInfo.thumbnail,
-        downloadDate: new Date().toISOString(),
-        localPath: videoInfo.downloadUrl,
-      });
-
-      setState("downloaded");
-      showToast("Video saved successfully!", "success");
-    } catch {
-      setState("preview");
-      showToast("Download failed. Please try again.", "error");
-    }
-  }, [videoInfo, url, addToHistory, showToast]);
+    },
+    [videoInfo, url, addToHistory, showToast]
+  );
 
   const handleReset = useCallback(() => {
     setUrl("");
@@ -582,6 +596,16 @@ export default function DownloadScreen() {
           </View>
         </Animated.View>
       )}
+
+      {/* Filename Modal */}
+      <FilenameModal
+        visible={showFilenameModal}
+        defaultFilename={
+          videoInfo ? generateDefaultFilename(videoInfo.title) : ""
+        }
+        onConfirm={handleConfirmDownload}
+        onCancel={() => setShowFilenameModal(false)}
+      />
     </ScrollView>
   );
 }
